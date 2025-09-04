@@ -19,6 +19,34 @@ export const useAuth = () => {
   return context;
 };
 
+// Generate students from 24PA1A0400 to 24PA1A0472
+const generateStudents = (): User[] => {
+  const students: User[] = [];
+  const startNum = 400;
+  const endNum = 472;
+  
+  // Sample student names (will cycle through these)
+  const firstNames = ['Arun', 'Priya', 'Raj', 'Sneha', 'Karthik', 'Divya', 'Suresh', 'Anjali', 'Vikram', 'Nisha'];
+  const lastNames = ['Kumar', 'Sharma', 'Reddy', 'Patel', 'Rao', 'Singh', 'Verma', 'Gupta', 'Joshi', 'Iyer'];
+  
+  for (let i = startNum; i <= endNum; i++) {
+    const paddedNum = i.toString().padStart(4, '0');
+    const registerNumber = `24PA1A${paddedNum}`;
+    const nameIndex = (i - startNum) % firstNames.length;
+    const lastNameIndex = (i - startNum) % lastNames.length;
+    
+    students.push({
+      id: `student-${i}`,
+      name: `${firstNames[nameIndex]} ${lastNames[lastNameIndex]}`,
+      registerNumber: registerNumber,
+      role: 'student',
+      createdAt: new Date('2024-01-15')
+    });
+  }
+  
+  return students;
+};
+
 // Mock users for demonstration
 const mockUsers: User[] = [
   {
@@ -28,41 +56,7 @@ const mockUsers: User[] = [
     role: 'teacher',
     createdAt: new Date('2024-01-01')
   },
-  {
-    id: 'student-1',
-    name: 'John Doe',
-    registerNumber: 'STLD2025001',
-    role: 'student',
-    createdAt: new Date('2024-01-15')
-  },
-  {
-    id: 'student-2',
-    name: 'Jane Smith',
-    registerNumber: 'STLD2025002',
-    role: 'student',
-    createdAt: new Date('2024-01-15')
-  },
-  {
-    id: 'student-3',
-    name: 'Mike Johnson',
-    registerNumber: 'STLD2025003',
-    role: 'student',
-    createdAt: new Date('2024-01-15')
-  },
-  {
-    id: 'student-4',
-    name: 'Sarah Williams',
-    registerNumber: 'STLD2025004',
-    role: 'student',
-    createdAt: new Date('2024-01-15')
-  },
-  {
-    id: 'student-5',
-    name: 'Tom Brown',
-    registerNumber: 'STLD2025005',
-    role: 'student',
-    createdAt: new Date('2024-01-15')
-  }
+  ...generateStudents()
 ];
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {

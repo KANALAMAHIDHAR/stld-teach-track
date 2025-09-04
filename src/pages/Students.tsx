@@ -6,13 +6,30 @@ import { Badge } from '@/components/ui/badge';
 import { Users, Plus, Mail, Edit, Trash2 } from 'lucide-react';
 
 export default function Students() {
-  const students = [
-    { id: '1', name: 'John Doe', registerNumber: 'STLD2025001', email: 'john@example.com', status: 'active' },
-    { id: '2', name: 'Jane Smith', registerNumber: 'STLD2025002', email: 'jane@example.com', status: 'active' },
-    { id: '3', name: 'Mike Johnson', registerNumber: 'STLD2025003', email: 'mike@example.com', status: 'active' },
-    { id: '4', name: 'Sarah Williams', registerNumber: 'STLD2025004', email: 'sarah@example.com', status: 'active' },
-    { id: '5', name: 'Tom Brown', registerNumber: 'STLD2025005', email: 'tom@example.com', status: 'inactive' },
-  ];
+  // Generate students from 24PA1A0400 to 24PA1A0472
+  const generateStudentList = () => {
+    const students = [];
+    const firstNames = ['Arun', 'Priya', 'Raj', 'Sneha', 'Karthik', 'Divya', 'Suresh', 'Anjali', 'Vikram', 'Nisha'];
+    const lastNames = ['Kumar', 'Sharma', 'Reddy', 'Patel', 'Rao', 'Singh', 'Verma', 'Gupta', 'Joshi', 'Iyer'];
+    
+    for (let i = 400; i <= 472; i++) {
+      const paddedNum = i.toString().padStart(4, '0');
+      const registerNumber = `24PA1A${paddedNum}`;
+      const nameIndex = (i - 400) % firstNames.length;
+      const lastNameIndex = (i - 400) % lastNames.length;
+      
+      students.push({
+        id: i.toString(),
+        name: `${firstNames[nameIndex]} ${lastNames[lastNameIndex]}`,
+        registerNumber: registerNumber,
+        email: `${registerNumber.toLowerCase()}@vishnu.edu.in`,
+        status: 'active' as const
+      });
+    }
+    return students;
+  };
+
+  const students = generateStudentList();
 
   return (
     <Layout>

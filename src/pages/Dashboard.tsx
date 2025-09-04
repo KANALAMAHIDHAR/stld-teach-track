@@ -15,23 +15,31 @@ import {
   Calendar,
   Award
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Dashboard() {
   const { user } = useAuth();
 
+  // Mock state for dynamic data
+  const [assignments, setAssignments] = useState(0);
+  const [submissions, setSubmissions] = useState(0);
+  const [pendingGrading, setPendingGrading] = useState(0);
+
+  const totalStudents = 73; // From 24PA1A0400 to 24PA1A0472
+
   const teacherStats = [
-    { icon: Users, label: 'Total Students', value: '45', color: 'text-info' },
-    { icon: FileText, label: 'Active Assignments', value: '8', color: 'text-primary' },
-    { icon: CheckCircle, label: 'Submissions', value: '234', color: 'text-success' },
-    { icon: Clock, label: 'Pending Grading', value: '12', color: 'text-warning' },
+    { icon: Users, label: 'Total Students', value: totalStudents.toString(), color: 'text-info' },
+    { icon: FileText, label: 'Active Assignments', value: assignments.toString(), color: 'text-primary' },
+    { icon: CheckCircle, label: 'Submissions', value: submissions.toString(), color: 'text-success' },
+    { icon: Clock, label: 'Pending Grading', value: pendingGrading.toString(), color: 'text-warning' },
   ];
 
   const studentStats = [
-    { icon: FileText, label: 'Assignments Due', value: '3', color: 'text-warning' },
-    { icon: CheckCircle, label: 'Completed', value: '5', color: 'text-success' },
-    { icon: Award, label: 'Average Score', value: '85%', color: 'text-primary' },
-    { icon: BrainCircuit, label: 'Active Quizzes', value: '2', color: 'text-info' },
+    { icon: FileText, label: 'Assignments Due', value: assignments.toString(), color: 'text-warning' },
+    { icon: CheckCircle, label: 'Completed', value: '0', color: 'text-success' },
+    { icon: Award, label: 'Average Score', value: 'N/A', color: 'text-primary' },
+    { icon: BrainCircuit, label: 'Active Quizzes', value: '0', color: 'text-info' },
   ];
 
   const stats = user?.role === 'teacher' ? teacherStats : studentStats;
@@ -67,8 +75,15 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
+            const navigate = useNavigate();
+            const isClickable = stat.label === 'Total Students' && user?.role === 'teacher';
+            
             return (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card 
+                key={index} 
+                className={`transition-shadow ${isClickable ? 'hover:shadow-lg cursor-pointer' : 'hover:shadow-lg'}`}
+                onClick={() => isClickable && navigate('/students')}
+              >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>

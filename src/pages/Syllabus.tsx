@@ -17,68 +17,68 @@ export default function Syllabus() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<SyllabusItem | null>(null);
 
-  // Mock syllabus data
+  // Mock syllabus data with new unit structure
   const [syllabusItems] = useState<SyllabusItem[]>([
     {
       id: '1',
-      title: 'Introduction to Digital Systems',
-      description: 'Number systems, binary arithmetic, codes, and basic logic gates.',
+      title: 'Unit 1 - Part 1: Review of Numbers and Systems',
+      description: 'Number systems (Binary, Octal, Hexadecimal), conversions, complements, and arithmetic operations.',
       weekNumber: 1,
       createdBy: 'teacher-1',
       createdAt: new Date('2024-01-15')
     },
     {
       id: '2',
-      title: 'Boolean Algebra and Logic Simplification',
-      description: 'Boolean functions, canonical forms, Karnaugh maps, and Quine-McCluskey method.',
+      title: 'Unit 1 - Part 2: Boolean Theorems and Logic Operations',
+      description: 'Boolean algebra fundamentals, theorems, laws, and basic logic gate operations.',
       weekNumber: 2,
       createdBy: 'teacher-1',
       createdAt: new Date('2024-01-22')
     },
     {
       id: '3',
-      title: 'Combinational Logic Design',
-      description: 'Adders, subtractors, multiplexers, decoders, encoders, and comparators.',
+      title: 'Unit 2 - Part 1: Minimisation Techniques',
+      description: 'Karnaugh maps, Quine-McCluskey method, and prime implicant selection.',
       weekNumber: 3,
       createdBy: 'teacher-1',
       createdAt: new Date('2024-01-29')
     },
     {
       id: '4',
-      title: 'Sequential Logic Fundamentals',
-      description: 'Latches, flip-flops, timing diagrams, and state machines.',
+      title: 'Unit 2 - Part 2: Combinational Logic Circuit Design',
+      description: 'Design methodology for combinational circuits, optimization techniques.',
       weekNumber: 4,
       createdBy: 'teacher-1',
       createdAt: new Date('2024-02-05')
     },
     {
       id: '5',
-      title: 'Registers and Counters',
-      description: 'Shift registers, ripple counters, synchronous counters, and their applications.',
+      title: 'Unit 3 - Part 1: Combinational Logic Circuits Design',
+      description: 'Adders, subtractors, multiplexers, demultiplexers, encoders, decoders, and comparators.',
       weekNumber: 5,
       createdBy: 'teacher-1',
       createdAt: new Date('2024-02-12')
     },
     {
       id: '6',
-      title: 'Memory and Programmable Logic',
-      description: 'ROM, RAM, PLA, PAL, and FPGA basics.',
+      title: 'Unit 3 - Part 2: Introduction to PLDs',
+      description: 'Programmable Logic Devices - PLA, PAL, CPLD, and FPGA basics.',
       weekNumber: 6,
       createdBy: 'teacher-1',
       createdAt: new Date('2024-02-19')
     },
     {
       id: '7',
-      title: 'Arithmetic Logic Unit Design',
-      description: 'ALU architecture, carry lookahead adders, and multiplication algorithms.',
+      title: 'Unit 4: Sequential Circuits 1',
+      description: 'Latches, flip-flops (SR, JK, D, T), timing diagrams, registers, and shift registers.',
       weekNumber: 7,
       createdBy: 'teacher-1',
       createdAt: new Date('2024-02-26')
     },
     {
       id: '8',
-      title: 'Advanced Topics and Applications',
-      description: 'VHDL/Verilog introduction, digital system design methodology.',
+      title: 'Unit 5: Sequential Circuits 2',
+      description: 'Counters (synchronous, asynchronous), state machines, and sequence detectors.',
       weekNumber: 8,
       createdBy: 'teacher-1',
       createdAt: new Date('2024-03-04')
