@@ -80,13 +80,11 @@ export const Sidebar = () => {
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
               <div className="mt-4 space-y-4">
-                <div>
-                  <p className="text-sm font-medium">If any problem contact:</p>
-                  <ul className="mt-2 text-sm space-y-1">
-                    <li>1) Mahidhar - 9390221684</li>
-                    <li>2) Pawan - 9515576179</li>
-                    <li>3) Heganeswar - 8919465798</li>
-                  </ul>
+                <div className="text-sm">
+                  <span className="mr-1 uppercase">IF ANY PROBLEM THEN</span>
+                  <SheetClose asChild>
+                    <Link to="/help" className="underline text-sidebar-primary font-semibold">CLICK HERE</Link>
+                  </SheetClose>
                 </div>
                 <Separator />
                 <nav className="space-y-1">
