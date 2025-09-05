@@ -13,6 +13,7 @@ import Quizzes from "./pages/Quizzes";
 import Feedback from "./pages/Feedback";
 import Students from "./pages/Students";
 import Reports from "./pages/Reports";
+import Photos from "./pages/Photos";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Help from "./pages/Help";
@@ -33,6 +34,7 @@ const AppRoutes = () => {
       <Route path="/help" element={<ProtectedRoute><Help /></ProtectedRoute>} />
       <Route path="/students" element={<ProtectedRoute allowedRoles={['teacher']}><Students /></ProtectedRoute>} />
       <Route path="/reports" element={<ProtectedRoute allowedRoles={['teacher']}><Reports /></ProtectedRoute>} />
+      <Route path="/photos" element={<ProtectedRoute><Photos /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute allowedRoles={['student']}><Profile /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
