@@ -142,14 +142,22 @@ export const Sidebar = () => {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Professor Details</DialogTitle>
+              <DialogTitle>{user?.role === 'teacher' ? 'Professor Details' : 'Profile Information'}</DialogTitle>
             </DialogHeader>
-            <div className="space-y-2 text-sm">
-              <p className="font-medium">Dr.S.Sugumaran</p>
-              <p>Email: Sugumaran.s@vishnu.edu.in</p>
-              <p>Role: Teacher</p>
-              <p>Subject: Switching Theory and Logic Design</p>
-            </div>
+            {user?.role === 'teacher' ? (
+              <div className="space-y-2 text-sm">
+                <p className="font-medium">Dr.S.Sugumaran</p>
+                <p>Email: Sugumaran.s@vishnu.edu.in</p>
+                <p>Role: Teacher</p>
+                <p>Subject: Switching Theory and Logic Design</p>
+              </div>
+            ) : (
+              <div className="space-y-2 text-sm">
+                <p><span className="font-medium">Name:</span> {user?.name}</p>
+                <p><span className="font-medium">Register Number:</span> {user?.registerNumber || user?.name}</p>
+                <p><span className="font-medium">Branch:</span> Electronics and Communication Engineering</p>
+              </div>
+            )}
           </DialogContent>
         </Dialog>
       </div>
