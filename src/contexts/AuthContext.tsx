@@ -56,6 +56,13 @@ const mockUsers: User[] = [
     role: 'teacher',
     createdAt: new Date('2024-01-01')
   },
+  {
+    id: 'student-12345',
+    name: 'Student 12345',
+    registerNumber: '12345',
+    role: 'student',
+    createdAt: new Date('2024-01-15')
+  },
   ...generateStudents()
 ];
 
@@ -87,7 +94,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const loginWithRegisterNumber = async (registerNumber: string, password: string) => {
     // Mock authentication - replace with actual Supabase auth
-    if (password === 'pass123') {
+    const isNewCreds = registerNumber === '12345' && password === 'stld';
+    const isOldCreds = password === 'pass123';
+    if (isNewCreds || isOldCreds) {
       const student = mockUsers.find(u => u.registerNumber === registerNumber);
       if (student) {
         setUser(student);
