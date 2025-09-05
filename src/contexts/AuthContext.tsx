@@ -51,7 +51,7 @@ const generateStudents = (): User[] => {
 const mockUsers: User[] = [
   {
     id: 'teacher-1',
-    name: 'Dr. Mahidhar',
+    name: 'Dr.S.Sugumaran',
     email: 'mahidhar@example.com',
     role: 'teacher',
     createdAt: new Date('2024-01-01')
