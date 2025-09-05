@@ -140,7 +140,7 @@ export default function Login() {
                     <Input
                       id="email"
                       type="email"
-                      placeholder="teacher@example.com"
+                      placeholder="sugumaran.s@vishnu.edu"
                       value={teacherEmail}
                       onChange={(e) => setTeacherEmail(e.target.value)}
                       required
@@ -171,7 +171,7 @@ export default function Login() {
                   </Button>
                   <div className="text-sm text-muted-foreground">
                     <p>Demo account:</p>
-                    <p className="font-mono text-xs">mahidhar@example.com / TeacherPass123</p>
+                    <p className="font-mono text-xs">Sugumaran.s@vishnu.edu / stld</p>
                   </div>
                 </form>
               </TabsContent>
