@@ -32,7 +32,7 @@ const AppRoutes = () => {
       <Route path="/quizzes" element={<ProtectedRoute><Quizzes /></ProtectedRoute>} />
       <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
       <Route path="/help" element={<ProtectedRoute><Help /></ProtectedRoute>} />
-      <Route path="/students" element={<ProtectedRoute allowedRoles={['teacher']}><Students /></ProtectedRoute>} />
+      <Route path="/students" element={<ProtectedRoute allowedRoles={['teacher','student']}><Students /></ProtectedRoute>} />
       <Route path="/reports" element={<ProtectedRoute allowedRoles={['teacher']}><Reports /></ProtectedRoute>} />
       <Route path="/photos" element={<ProtectedRoute><Photos /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute allowedRoles={['student']}><Profile /></ProtectedRoute>} />
