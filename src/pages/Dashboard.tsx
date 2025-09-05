@@ -17,7 +17,6 @@ import {
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
 
 export default function Dashboard() {
   const { user } = useAuth();
