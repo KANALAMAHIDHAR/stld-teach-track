@@ -1,6 +1,6 @@
-import { Sidebar } from './Sidebar';
+import { Sidebar as AppSidebar } from './Sidebar';
 
-import { Sidebar } from './Sidebar';
+import { Sidebar as AppSidebar } from './Sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useAuth } from '@/contexts/AuthContext';
 import { Link, useLocation } from 'react-router-dom';
@@ -107,7 +107,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="flex h-screen bg-background">
-      <Sidebar />
+      <AppSidebar />
       <main className="flex-1 overflow-y-auto">{children}</main>
     </div>
   );
