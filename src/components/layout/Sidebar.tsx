@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   BookOpen,
   FileText,
@@ -19,6 +20,7 @@ import {
 } from 'lucide-react';
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -62,7 +64,7 @@ export const Sidebar = () => {
             <GraduationCap className="h-8 w-8 text-sidebar-primary" />
             <div>
               <h1 className="text-xl font-bold text-sidebar-primary">STLD Portal</h1>
-              <p className="text-xs text-sidebar-primary/70">Web Learning Platform</p>
+              <p className="text-xs text-sidebar-primary/70">Switching Theory and Logic Design</p>
             </div>
           </div>
           <Sheet>
@@ -71,7 +73,7 @@ export const Sidebar = () => {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-72">
+            <SheetContent side="left" className="w-full sm:w-96 bg-sidebar text-sidebar-foreground">
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
@@ -121,15 +123,32 @@ export const Sidebar = () => {
 
       {/* User Info */}
       <div className="p-4 border-b border-sidebar-border">
-        <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-full bg-sidebar-accent flex items-center justify-center">
-            <User className="h-5 w-5" />
-          </div>
-          <div className="flex-1">
-            <p className="font-medium text-sm">{user?.name}</p>
-            <p className="text-xs text-sidebar-primary/70 capitalize">{user?.role}</p>
-          </div>
-        </div>
+        <Dialog>
+          <DialogTrigger asChild>
+            <button className="w-full text-left">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-sidebar-accent flex items-center justify-center">
+                  <User className="h-5 w-5" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-medium text-sm">{user?.name}</p>
+                  <p className="text-xs text-sidebar-primary/70 capitalize">{user?.role}</p>
+                </div>
+              </div>
+            </button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Professor Details</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-2 text-sm">
+              <p className="font-medium">Dr.S.Sugumaran</p>
+              <p>Email: mahidhar@example.com</p>
+              <p>Role: Teacher</p>
+              <p>Subject: Switching Theory and Logic Design</p>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
 
       {/* Navigation Links */}
