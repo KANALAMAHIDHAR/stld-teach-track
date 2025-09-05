@@ -1,4 +1,5 @@
 import { Layout } from '@/components/layout/Layout';
+import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -6,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Users, Plus, Mail, Edit, Trash2 } from 'lucide-react';
 
 export default function Students() {
+  const { user } = useAuth();
   // Show only specified register numbers from 24PA1A0462 through 24PA1A0499, 24PA1A04A0-24PA1A04A9, 24PA1A04B0-24PA1A04B9, and 24PA1A04C0-24PA1A04C1
   const generateStudentList = () => {
     const students: { id: string; name: string; registerNumber: string; email: string; status: 'active' }[] = [];
@@ -45,6 +47,21 @@ export default function Students() {
   };
 
   const students = generateStudentList();
+
+  if (user?.role === 'student') {
+    return (
+      <Layout>
+        <div className="p-8 bg-white min-h-full">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold">WELCOME BACK DEAR!!</h1>
+          </div>
+          <div className="text-center text-lg text-muted-foreground">
+            LEARN EVERYTHING BY USING ME
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
