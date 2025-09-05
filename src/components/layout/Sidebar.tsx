@@ -157,15 +157,11 @@ export const Sidebar = () => {
       {/* Left nav hidden; use the sheet (three lines) menu instead */}
       <div className="flex-1" />
 
-      {/* Bottom actions: Help and Photos above Logout */}
+      {/* Bottom actions: Help above Logout (Photos hidden here) */}
       <div className="p-4 border-t border-sidebar-border space-y-2">
         <Link to="/help" className={cn("flex items-center gap-2 px-2 py-2 rounded-md hover:bg-sidebar-accent")}>
           <HelpCircle className="h-4 w-4" />
           <span className="text-sm">Help</span>
-        </Link>
-        <Link to="/photos" className={cn("flex items-center gap-2 px-2 py-2 rounded-md hover:bg-sidebar-accent")}>
-          <Image className="h-4 w-4" />
-          <span className="text-sm">Photos</span>
         </Link>
         <Button
           variant="ghost"
