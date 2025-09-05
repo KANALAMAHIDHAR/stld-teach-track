@@ -15,6 +15,7 @@ import Students from "./pages/Students";
 import Reports from "./pages/Reports";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import Help from "./pages/Help";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const AppRoutes = () => {
       <Route path="/assignments" element={<ProtectedRoute><Assignments /></ProtectedRoute>} />
       <Route path="/quizzes" element={<ProtectedRoute><Quizzes /></ProtectedRoute>} />
       <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
+      <Route path="/help" element={<ProtectedRoute><Help /></ProtectedRoute>} />
       <Route path="/students" element={<ProtectedRoute allowedRoles={['teacher']}><Students /></ProtectedRoute>} />
       <Route path="/reports" element={<ProtectedRoute allowedRoles={['teacher']}><Reports /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute allowedRoles={['student']}><Profile /></ProtectedRoute>} />
