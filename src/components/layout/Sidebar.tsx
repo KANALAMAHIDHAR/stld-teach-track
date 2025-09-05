@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   BookOpen,
   FileText,
@@ -15,7 +16,8 @@ import {
   GraduationCap,
   ClipboardList,
   Menu,
-  HelpCircle
+  HelpCircle,
+  Image
 } from 'lucide-react';
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
@@ -34,6 +36,7 @@ export const Sidebar = () => {
     { to: '/feedback', icon: MessageSquare, label: 'Feedback' },
     { to: '/students', icon: Users, label: 'Students' },
     { to: '/reports', icon: BarChart3, label: 'Reports' },
+    { to: '/photos', icon: Image, label: 'Photos' },
     { to: '/help', icon: HelpCircle, label: 'Help' },
   ];
 
@@ -43,6 +46,7 @@ export const Sidebar = () => {
     { to: '/assignments', icon: FileText, label: 'Assignments' },
     { to: '/quizzes', icon: BrainCircuit, label: 'Quizzes' },
     { to: '/feedback', icon: MessageSquare, label: 'Feedback' },
+    { to: '/photos', icon: Image, label: 'Photos' },
     { to: '/help', icon: HelpCircle, label: 'Help' },
     { to: '/profile', icon: User, label: 'Profile' },
   ];
@@ -151,31 +155,19 @@ export const Sidebar = () => {
         </Dialog>
       </div>
 
-      {/* Navigation Links */}
-      <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-        {links.map((link) => {
-          const Icon = link.icon;
-          const isActive = location.pathname === link.to;
-          
-          return (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
-                "hover:bg-sidebar-accent",
-                isActive && "bg-sidebar-accent"
-              )}
-            >
-              <Icon className="h-4 w-4" />
-              <span className="text-sm font-medium">{link.label}</span>
-            </Link>
-          );
-        })}
-      </nav>
+      {/* Left nav hidden; use the sheet (three lines) menu instead */}
+      <div className="flex-1" />
 
-      {/* Logout Button */}
-      <div className="p-4 border-t border-sidebar-border">
+      {/* Bottom actions: Help and Photos above Logout */}
+      <div className="p-4 border-t border-sidebar-border space-y-2">
+        <Link to="/help" className={cn("flex items-center gap-2 px-2 py-2 rounded-md hover:bg-sidebar-accent")}>
+          <HelpCircle className="h-4 w-4" />
+          <span className="text-sm">Help</span>
+        </Link>
+        <Link to="/photos" className={cn("flex items-center gap-2 px-2 py-2 rounded-md hover:bg-sidebar-accent")}>
+          <Image className="h-4 w-4" />
+          <span className="text-sm">Photos</span>
+        </Link>
         <Button
           variant="ghost"
           className="w-full justify-start text-sidebar-primary hover:bg-sidebar-accent hover:text-sidebar-primary"
