@@ -26,7 +26,7 @@ export default function Dashboard() {
   const [submissions, setSubmissions] = useState(0);
   const [pendingGrading, setPendingGrading] = useState(0);
 
-  const totalStudents = 73; // From 24PA1A0400 to 24PA1A0472
+  const totalStudents = 60; // 24PA1A0462–0499 (38) + 04A0–04A9 (10) + 04B0–04B9 (10) + 04C0–04C1 (2)
 
   const teacherStats = [
     { icon: Users, label: 'Total Students', value: totalStudents.toString(), color: 'text-info' },
