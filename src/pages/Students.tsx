@@ -6,26 +6,41 @@ import { Badge } from '@/components/ui/badge';
 import { Users, Plus, Mail, Edit, Trash2 } from 'lucide-react';
 
 export default function Students() {
-  // Generate students from 24PA1A0400 to 24PA1A0472
+  // Show only specified register numbers from 24PA1A0462 through 24PA1A0499, 24PA1A04A0-24PA1A04A9, 24PA1A04B0-24PA1A04B9, and 24PA1A04C0-24PA1A04C1
   const generateStudentList = () => {
-    const students = [];
-    const firstNames = ['Arun', 'Priya', 'Raj', 'Sneha', 'Karthik', 'Divya', 'Suresh', 'Anjali', 'Vikram', 'Nisha'];
-    const lastNames = ['Kumar', 'Sharma', 'Reddy', 'Patel', 'Rao', 'Singh', 'Verma', 'Gupta', 'Joshi', 'Iyer'];
-    
-    for (let i = 400; i <= 472; i++) {
-      const paddedNum = i.toString().padStart(4, '0');
-      const registerNumber = `24PA1A${paddedNum}`;
-      const nameIndex = (i - 400) % firstNames.length;
-      const lastNameIndex = (i - 400) % lastNames.length;
-      
+    const students: { id: string; name: string; registerNumber: string; email: string; status: 'active' }[] = [];
+
+    const pushStudent = (reg: string) => {
       students.push({
-        id: i.toString(),
-        name: `${firstNames[nameIndex]} ${lastNames[lastNameIndex]}`,
-        registerNumber: registerNumber,
-        email: `${registerNumber.toLowerCase()}@vishnu.edu.in`,
-        status: 'active' as const
+        id: reg,
+        name: reg,
+        registerNumber: reg,
+        email: `${reg.toLowerCase()}@vishnu.edu.in`,
+        status: 'active',
       });
+    };
+
+    // 24PA1A0462 .. 24PA1A0499
+    for (let i = 62; i <= 99; i++) {
+      const suffix = i.toString().padStart(2, '0');
+      pushStudent(`24PA1A04${suffix}`);
     }
+
+    // 24PA1A04A0 .. 24PA1A04A9
+    for (let i = 0; i <= 9; i++) {
+      pushStudent(`24PA1A04A${i}`);
+    }
+
+    // 24PA1A04B0 .. 24PA1A04B9
+    for (let i = 0; i <= 9; i++) {
+      pushStudent(`24PA1A04B${i}`);
+    }
+
+    // 24PA1A04C0 .. 24PA1A04C1
+    for (let i = 0; i <= 1; i++) {
+      pushStudent(`24PA1A04C${i}`);
+    }
+
     return students;
   };
 
