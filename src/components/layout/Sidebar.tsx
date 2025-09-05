@@ -17,7 +17,7 @@ import {
   Menu,
   HelpCircle
 } from 'lucide-react';
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
@@ -72,7 +72,7 @@ export const Sidebar = () => {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-full sm:w-96 bg-sidebar text-sidebar-foreground">
+            <SheetContent side="left" className="w-64 bg-sidebar text-sidebar-foreground">
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
@@ -91,18 +91,19 @@ export const Sidebar = () => {
                     const Icon = link.icon;
                     const isActive = location.pathname === link.to;
                     return (
-                      <Link
-                        key={`sheet-${link.to}`}
-                        to={link.to}
-                        className={cn(
-                          "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
-                          "hover:bg-sidebar-accent",
-                          isActive && "bg-sidebar-accent"
-                        )}
-                      >
-                        <Icon className="h-4 w-4" />
-                        <span className="text-sm font-medium">{link.label}</span>
-                      </Link>
+                      <SheetClose asChild key={`sheet-${link.to}`}>
+                        <Link
+                          to={link.to}
+                          className={cn(
+                            "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
+                            "hover:bg-sidebar-accent",
+                            isActive && "bg-sidebar-accent"
+                          )}
+                        >
+                          <Icon className="h-4 w-4" />
+                          <span className="text-sm font-medium">{link.label}</span>
+                        </Link>
+                      </SheetClose>
                     );
                   })}
                   <Button
@@ -142,7 +143,7 @@ export const Sidebar = () => {
             </DialogHeader>
             <div className="space-y-2 text-sm">
               <p className="font-medium">Dr.S.Sugumaran</p>
-              <p>Email: mahidhar@example.com</p>
+              <p>Email: Sugumaran.s@vishnu.edu.in</p>
               <p>Role: Teacher</p>
               <p>Subject: Switching Theory and Logic Design</p>
             </div>
