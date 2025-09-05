@@ -4,7 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Users, Plus, Mail, Edit, Trash2 } from 'lucide-react';
+import { Users, Plus, Mail, Edit, Trash2, User as UserIcon } from 'lucide-react';
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 export default function Students() {
   const { user } = useAuth();
@@ -52,11 +54,31 @@ export default function Students() {
     return (
       <Layout>
         <div className="p-8 bg-white min-h-full">
-          <div className="mb-8">
+          <div className="mb-6">
             <h1 className="text-3xl font-bold">WELCOME BACK DEAR!!</h1>
           </div>
-          <div className="text-center text-lg text-muted-foreground">
+          <div className="mb-8 text-center text-lg text-muted-foreground">
             LEARN EVERYTHING BY USING ME
+          </div>
+          <div className="max-w-md mx-auto space-y-4 text-center">
+            <p className="text-sm">Register Number: <span className="font-semibold">{user?.registerNumber || user?.name}</span></p>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="inline-flex items-center gap-2 px-4 py-2 rounded-md border shadow-sm hover:bg-secondary">
+                  <UserIcon className="h-4 w-4" /> My Profile
+                </button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Profile Information</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-1 text-sm">
+                  <p><span className="font-medium">Name:</span> {user?.name}</p>
+                  <p><span className="font-medium">Register Number:</span> {user?.registerNumber || user?.name}</p>
+                  <p><span className="font-medium">Branch:</span> Electronics and Communication Engineering</p>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </Layout>
