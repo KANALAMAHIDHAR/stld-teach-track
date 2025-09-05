@@ -8,13 +8,16 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Syllabus from "./pages/Syllabus";
+import Materials from "./pages/Materials";
 import Assignments from "./pages/Assignments";
 import Quizzes from "./pages/Quizzes";
 import Feedback from "./pages/Feedback";
 import Students from "./pages/Students";
 import Reports from "./pages/Reports";
+import Photos from "./pages/Photos";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import Help from "./pages/Help";
 
 const queryClient = new QueryClient();
 
@@ -26,11 +29,14 @@ const AppRoutes = () => {
       <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
       <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/syllabus" element={<ProtectedRoute><Syllabus /></ProtectedRoute>} />
+      <Route path="/materials" element={<ProtectedRoute><Materials /></ProtectedRoute>} />
       <Route path="/assignments" element={<ProtectedRoute><Assignments /></ProtectedRoute>} />
       <Route path="/quizzes" element={<ProtectedRoute><Quizzes /></ProtectedRoute>} />
       <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
-      <Route path="/students" element={<ProtectedRoute allowedRoles={['teacher']}><Students /></ProtectedRoute>} />
+      <Route path="/help" element={<ProtectedRoute><Help /></ProtectedRoute>} />
+      <Route path="/students" element={<ProtectedRoute allowedRoles={['teacher','student']}><Students /></ProtectedRoute>} />
       <Route path="/reports" element={<ProtectedRoute allowedRoles={['teacher']}><Reports /></ProtectedRoute>} />
+      <Route path="/photos" element={<ProtectedRoute><Photos /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute allowedRoles={['student']}><Profile /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>

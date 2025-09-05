@@ -1,35 +1,89 @@
 import { Layout } from '@/components/layout/Layout';
+import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Users, Plus, Mail, Edit, Trash2 } from 'lucide-react';
+import { Users, Plus, Mail, Edit, Trash2, User as UserIcon } from 'lucide-react';
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 export default function Students() {
-  // Generate students from 24PA1A0400 to 24PA1A0472
+  const { user } = useAuth();
+  // Show only specified register numbers from 24PA1A0462 through 24PA1A0499, 24PA1A04A0-24PA1A04A9, 24PA1A04B0-24PA1A04B9, and 24PA1A04C0-24PA1A04C1
   const generateStudentList = () => {
-    const students = [];
-    const firstNames = ['Arun', 'Priya', 'Raj', 'Sneha', 'Karthik', 'Divya', 'Suresh', 'Anjali', 'Vikram', 'Nisha'];
-    const lastNames = ['Kumar', 'Sharma', 'Reddy', 'Patel', 'Rao', 'Singh', 'Verma', 'Gupta', 'Joshi', 'Iyer'];
-    
-    for (let i = 400; i <= 472; i++) {
-      const paddedNum = i.toString().padStart(4, '0');
-      const registerNumber = `24PA1A${paddedNum}`;
-      const nameIndex = (i - 400) % firstNames.length;
-      const lastNameIndex = (i - 400) % lastNames.length;
-      
+    const students: { id: string; name: string; registerNumber: string; email: string; status: 'active' }[] = [];
+
+    const pushStudent = (reg: string) => {
       students.push({
-        id: i.toString(),
-        name: `${firstNames[nameIndex]} ${lastNames[lastNameIndex]}`,
-        registerNumber: registerNumber,
-        email: `${registerNumber.toLowerCase()}@vishnu.edu.in`,
-        status: 'active' as const
+        id: reg,
+        name: reg,
+        registerNumber: reg,
+        email: `${reg.toLowerCase()}@vishnu.edu.in`,
+        status: 'active',
       });
+    };
+
+    // 24PA1A0462 .. 24PA1A0499
+    for (let i = 62; i <= 99; i++) {
+      const suffix = i.toString().padStart(2, '0');
+      pushStudent(`24PA1A04${suffix}`);
     }
+
+    // 24PA1A04A0 .. 24PA1A04A9
+    for (let i = 0; i <= 9; i++) {
+      pushStudent(`24PA1A04A${i}`);
+    }
+
+    // 24PA1A04B0 .. 24PA1A04B9
+    for (let i = 0; i <= 9; i++) {
+      pushStudent(`24PA1A04B${i}`);
+    }
+
+    // 24PA1A04C0 .. 24PA1A04C1
+    for (let i = 0; i <= 1; i++) {
+      pushStudent(`24PA1A04C${i}`);
+    }
+
     return students;
   };
 
   const students = generateStudentList();
+
+  if (user?.role === 'student') {
+    return (
+      <Layout>
+        <div className="p-8 bg-white min-h-full">
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold">WELCOME BACK DEAR!!</h1>
+          </div>
+          <div className="mb-8 text-center text-lg text-muted-foreground">
+            LEARN EVERYTHING BY USING ME
+          </div>
+          <div className="max-w-md mx-auto space-y-4 text-center">
+            <p className="text-sm">Register Number: <span className="font-semibold">{user?.registerNumber || user?.name}</span></p>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="inline-flex items-center gap-2 px-4 py-2 rounded-md border shadow-sm hover:bg-secondary">
+                  <UserIcon className="h-4 w-4" /> My Profile
+                </button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Profile Information</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-1 text-sm">
+                  <p><span className="font-medium">Name:</span> {user?.name}</p>
+                  <p><span className="font-medium">Register Number:</span> {user?.registerNumber || user?.name}</p>
+                  <p><span className="font-medium">Branch:</span> Electronics and Communication Engineering</p>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

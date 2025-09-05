@@ -55,7 +55,7 @@ export default function Login() {
         title: "Welcome!",
         description: "Successfully logged in as student",
       });
-      navigate('/');
+      navigate('/students');
     } catch (error) {
       toast({
         title: "Login failed",
@@ -97,7 +97,7 @@ export default function Login() {
                     <Input
                       id="register"
                       type="text"
-                      placeholder="STLD2025001"
+                      placeholder="24PA1A0480"
                       value={registerNumber}
                       onChange={(e) => setRegisterNumber(e.target.value)}
                       required
@@ -109,7 +109,7 @@ export default function Login() {
                     <Input
                       id="student-password"
                       type="password"
-                      placeholder="Enter your password"
+                      placeholder="0480"
                       value={studentPassword}
                       onChange={(e) => setStudentPassword(e.target.value)}
                       required
@@ -127,8 +127,8 @@ export default function Login() {
                     )}
                   </Button>
                   <div className="text-sm text-muted-foreground">
-                    <p>Demo accounts:</p>
-                    <p className="font-mono text-xs">STLD2025001-005 / pass123</p>
+                    <p>Demo example:</p>
+                    <p className="font-mono text-xs">24PA1A0480 / 0480</p>
                   </div>
                 </form>
               </TabsContent>
@@ -140,7 +140,7 @@ export default function Login() {
                     <Input
                       id="email"
                       type="email"
-                      placeholder="teacher@example.com"
+                      placeholder="sugumaran.s@vishnu.edu"
                       value={teacherEmail}
                       onChange={(e) => setTeacherEmail(e.target.value)}
                       required
@@ -171,7 +171,7 @@ export default function Login() {
                   </Button>
                   <div className="text-sm text-muted-foreground">
                     <p>Demo account:</p>
-                    <p className="font-mono text-xs">mahidhar@example.com / TeacherPass123</p>
+                    <p className="font-mono text-xs">Sugumaran.s@vishnu.edu / stld</p>
                   </div>
                 </form>
               </TabsContent>
