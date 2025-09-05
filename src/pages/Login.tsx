@@ -55,7 +55,7 @@ export default function Login() {
         title: "Welcome!",
         description: "Successfully logged in as student",
       });
-      navigate('/');
+      navigate('/students');
     } catch (error) {
       toast({
         title: "Login failed",
