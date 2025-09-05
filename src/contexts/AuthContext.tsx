@@ -53,7 +53,7 @@ const mockUsers: User[] = [
   {
     id: 'teacher-1',
     name: 'Dr.S.Sugumaran',
-    email: 'mahidhar@example.com',
+    email: 'Sugumaran.s@vishnu.edu',
     role: 'teacher',
     createdAt: new Date('2024-01-01')
   },
@@ -75,8 +75,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const login = async (email: string, password: string) => {
     // Mock authentication - replace with actual Supabase auth
-    if (email === 'mahidhar@example.com' && password === 'TeacherPass123') {
-      const teacher = mockUsers.find(u => u.email === email);
+    if (email.toLowerCase() === 'sugumaran.s@vishnu.edu' && password === 'stld') {
+      const teacher = mockUsers.find(u => u.email?.toLowerCase() === email.toLowerCase());
       if (teacher) {
         setUser(teacher);
         localStorage.setItem('stld-user', JSON.stringify(teacher));
