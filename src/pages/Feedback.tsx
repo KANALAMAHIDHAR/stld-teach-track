@@ -94,7 +94,7 @@ export default function Feedback() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-muted-foreground">Total Responses</p>
-                      <p className="text-2xl font-bold">101</p>
+                      <p className="text-2xl font-bold">0</p>
                     </div>
                     <MessageSquare className="h-8 w-8 text-primary" />
                   </div>
@@ -105,7 +105,7 @@ export default function Feedback() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-muted-foreground">Average Rating</p>
-                      <p className="text-2xl font-bold">4.3/5</p>
+                      <p className="text-2xl font-bold">0/5</p>
                     </div>
                     <Star className="h-8 w-8 text-warning" />
                   </div>
@@ -116,7 +116,7 @@ export default function Feedback() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-muted-foreground">Active Forms</p>
-                      <p className="text-2xl font-bold">3</p>
+                      <p className="text-2xl font-bold">0</p>
                     </div>
                     <BarChart className="h-8 w-8 text-success" />
                   </div>
