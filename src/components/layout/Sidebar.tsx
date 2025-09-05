@@ -30,6 +30,7 @@ export const Sidebar = () => {
   const teacherLinks = [
     { to: '/', icon: Home, label: 'Dashboard' },
     { to: '/syllabus', icon: BookOpen, label: 'Syllabus' },
+    { to: '/materials', icon: ClipboardList, label: 'Material' },
     { to: '/assignments', icon: FileText, label: 'Assignments' },
     { to: '/quizzes', icon: BrainCircuit, label: 'Quizzes' },
     { to: '/feedback', icon: MessageSquare, label: 'Feedback' },
@@ -42,6 +43,7 @@ export const Sidebar = () => {
   const studentLinks = [
     { to: '/', icon: Home, label: 'Dashboard' },
     { to: '/syllabus', icon: BookOpen, label: 'Syllabus' },
+    { to: '/materials', icon: ClipboardList, label: 'Material' },
     { to: '/assignments', icon: FileText, label: 'Assignments' },
     { to: '/quizzes', icon: BrainCircuit, label: 'Quizzes' },
     { to: '/feedback', icon: MessageSquare, label: 'Feedback' },
