@@ -20,8 +20,8 @@ export default function Login() {
   const [teacherPassword, setTeacherPassword] = useState('');
   
   // Student login state
-  const [registerNumber, setRegisterNumber] = useState('12345');
-  const [studentPassword, setStudentPassword] = useState('stld');
+  const [registerNumber, setRegisterNumber] = useState('');
+  const [studentPassword, setStudentPassword] = useState('');
 
   const handleTeacherLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,7 +97,7 @@ export default function Login() {
                     <Input
                       id="register"
                       type="text"
-                      placeholder="12345"
+                      placeholder="24PA1A0480"
                       value={registerNumber}
                       onChange={(e) => setRegisterNumber(e.target.value)}
                       required
@@ -109,7 +109,7 @@ export default function Login() {
                     <Input
                       id="student-password"
                       type="password"
-                      placeholder="stld"
+                      placeholder="0480"
                       value={studentPassword}
                       onChange={(e) => setStudentPassword(e.target.value)}
                       required
@@ -127,8 +127,8 @@ export default function Login() {
                     )}
                   </Button>
                   <div className="text-sm text-muted-foreground">
-                    <p>Demo account:</p>
-                    <p className="font-mono text-xs">12345 / stld</p>
+                    <p>Demo example:</p>
+                    <p className="font-mono text-xs">24PA1A0480 / 0480</p>
                   </div>
                 </form>
               </TabsContent>
