@@ -10,11 +10,28 @@ export default function Help() {
             <CardTitle>Help</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-2 text-sm">
-              <p>If any problem contact:</p>
-              <p>1) Mahidhar - 9390221684</p>
-              <p>2) Pawan - 9515576179</p>
-              <p>3) Heganeswar - 8919465798</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Card className="bg-gradient-card">
+                <CardContent className="p-6">
+                  <p className="text-xs uppercase text-muted-foreground">Head</p>
+                  <h3 className="text-lg font-semibold">Mahidhar</h3>
+                  <p className="text-sm">Phone: 9390221684</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-gradient-card">
+                <CardContent className="p-6">
+                  <p className="text-xs uppercase text-muted-foreground">Co-Head</p>
+                  <h3 className="text-lg font-semibold">Pawan</h3>
+                  <p className="text-sm">Phone: 9515576179</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-gradient-card">
+                <CardContent className="p-6">
+                  <p className="text-xs uppercase text-muted-foreground">Admin</p>
+                  <h3 className="text-lg font-semibold">HeganESwar</h3>
+                  <p className="text-sm">Phone: 8919465798</p>
+                </CardContent>
+              </Card>
             </div>
           </CardContent>
         </Card>
