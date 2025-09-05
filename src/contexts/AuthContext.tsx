@@ -19,31 +19,32 @@ export const useAuth = () => {
   return context;
 };
 
-// Generate students from 24PA1A0400 to 24PA1A0472
+// Generate students for 24PA1A0462–24PA1A0499, 24PA1A04A0–04A9, 24PA1A04B0–04B9, 24PA1A04C0–04C1
 const generateStudents = (): User[] => {
   const students: User[] = [];
-  const startNum = 400;
-  const endNum = 472;
-  
-  // Sample student names (will cycle through these)
-  const firstNames = ['Arun', 'Priya', 'Raj', 'Sneha', 'Karthik', 'Divya', 'Suresh', 'Anjali', 'Vikram', 'Nisha'];
-  const lastNames = ['Kumar', 'Sharma', 'Reddy', 'Patel', 'Rao', 'Singh', 'Verma', 'Gupta', 'Joshi', 'Iyer'];
-  
-  for (let i = startNum; i <= endNum; i++) {
-    const paddedNum = i.toString().padStart(4, '0');
-    const registerNumber = `24PA1A${paddedNum}`;
-    const nameIndex = (i - startNum) % firstNames.length;
-    const lastNameIndex = (i - startNum) % lastNames.length;
-    
+
+  const pushStudent = (reg: string, idx: number) => {
     students.push({
-      id: `student-${i}`,
-      name: `${firstNames[nameIndex]} ${lastNames[lastNameIndex]}`,
-      registerNumber: registerNumber,
+      id: `student-${reg}`,
+      name: reg,
+      registerNumber: reg,
       role: 'student',
       createdAt: new Date('2024-01-15')
     });
+  };
+
+  // 24PA1A0462 .. 24PA1A0499
+  for (let i = 62; i <= 99; i++) {
+    const suffix = i.toString().padStart(2, '0');
+    pushStudent(`24PA1A04${suffix}`, i);
   }
-  
+  // 24PA1A04A0 .. 24PA1A04A9
+  for (let i = 0; i <= 9; i++) pushStudent(`24PA1A04A${i}`, 100 + i);
+  // 24PA1A04B0 .. 24PA1A04B9
+  for (let i = 0; i <= 9; i++) pushStudent(`24PA1A04B${i}`, 110 + i);
+  // 24PA1A04C0 .. 24PA1A04C1
+  for (let i = 0; i <= 1; i++) pushStudent(`24PA1A04C${i}`, 120 + i);
+
   return students;
 };
 
@@ -55,13 +56,6 @@ const mockUsers: User[] = [
     email: 'mahidhar@example.com',
     role: 'teacher',
     createdAt: new Date('2024-01-01')
-  },
-  {
-    id: 'student-12345',
-    name: 'Student 12345',
-    registerNumber: '12345',
-    role: 'student',
-    createdAt: new Date('2024-01-15')
   },
   ...generateStudents()
 ];
@@ -93,12 +87,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const loginWithRegisterNumber = async (registerNumber: string, password: string) => {
-    // Mock authentication - replace with actual Supabase auth
-    const isNewCreds = registerNumber === '12345' && password === 'stld';
-    const isOldCreds = password === 'pass123';
-    if (isNewCreds || isOldCreds) {
-      const student = mockUsers.find(u => u.registerNumber === registerNumber);
-      if (student) {
+    // Accept any valid register from the list, password = last 4 characters of register (case-insensitive)
+    const reg = registerNumber.toUpperCase();
+    const student = mockUsers.find(u => u.registerNumber?.toUpperCase() === reg);
+    if (student) {
+      const expected = reg.slice(-4).toUpperCase();
+      if (password.toUpperCase() === expected) {
         setUser(student);
         localStorage.setItem('stld-user', JSON.stringify(student));
         return;
