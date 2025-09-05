@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -45,9 +46,9 @@ export default function Dashboard() {
   const stats = user?.role === 'teacher' ? teacherStats : studentStats;
 
   const recentActivities = [
-    { type: 'submission', title: 'Assignment 3 submitted', user: 'John Doe', time: '2 hours ago' },
-    { type: 'quiz', title: 'Quiz 2 completed', user: 'Jane Smith', time: '4 hours ago' },
-    { type: 'feedback', title: 'New feedback received', user: 'Mike Johnson', time: '1 day ago' },
+    { type: 'submission', title: 'Assignment 3 submitted', time: '2 hours ago' },
+    { type: 'quiz', title: 'Quiz 2 completed', time: '4 hours ago' },
+    { type: 'feedback', title: 'New feedback received', time: '1 day ago' },
   ];
 
   const upcomingDeadlines = [
@@ -76,13 +77,13 @@ export default function Dashboard() {
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             const navigate = useNavigate();
-            const isClickable = stat.label === 'Total Students' && user?.role === 'teacher';
-            
+            const isClickable = user?.role === 'teacher' && (stat.label === 'Total Students' || stat.label === 'Active Assignments');
+            const target = stat.label === 'Total Students' ? '/students' : stat.label === 'Active Assignments' ? '/assignments' : null;
             return (
               <Card 
                 key={index} 
                 className={`transition-shadow ${isClickable ? 'hover:shadow-lg cursor-pointer' : 'hover:shadow-lg'}`}
-                onClick={() => isClickable && navigate('/students')}
+                onClick={() => isClickable && target && navigate(target)}
               >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
@@ -117,7 +118,6 @@ export default function Dashboard() {
                       </div>
                       <div className="flex-1">
                         <p className="font-medium">{activity.title}</p>
-                        <p className="text-sm text-muted-foreground">{activity.user}</p>
                       </div>
                       <span className="text-xs text-muted-foreground">{activity.time}</span>
                     </div>
